@@ -1,0 +1,24 @@
+{
+  "name": "graphql-goodreads",
+  "version": "1.0.0",
+  "description": "GraphQL service providing data about your favourite books",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdevalapurkar/graphql-goodreads.git"
+  },
+  "author": "sdevalapurkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdevalapurkar/graphql-goodreads/issues"
+  },
+  "homepage": "https://github.com/sdevalapurkar/graphql-goodreads#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.0.0"
+  }
+}

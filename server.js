@@ -29,6 +29,7 @@ const schema = buildSchema(`
     name: String!
     booksRead: [Book!]!
     booksLiked: [Book!]!
+    booksWantToRead: [Book!]
   }
 
   type Query {
@@ -37,6 +38,10 @@ const schema = buildSchema(`
 
   type Mutation {
     likeBook(
+      userId: ID!
+      bookId: ID!
+    ): User!
+    wantToReadBook(
       userId: ID!
       bookId: ID!
     ): User!
@@ -70,11 +75,12 @@ class Review {
 }
 
 class User {
-  constructor(id, { name, booksRead, booksLiked }) {
+  constructor(id, { name, booksRead, booksLiked, booksWantToRead }) {
     this.id = id;
     this.name = name;
     this.booksRead = booksRead;
     this.booksLiked = booksLiked;
+    this.booksWantToRead = booksWantToRead;
   }
 }
 
@@ -93,6 +99,7 @@ const geronimoStilton = new Book(2, { title: "geronimo stilton goes to church", 
 
 shreyas.booksRead = [hatchet, geronimoStilton];
 shreyas.booksLiked = [hatchet];
+shreyas.booksWantToRead = [];
 
 fakeBookDatabase[1] = hatchet;
 fakeBookDatabase[2] = geronimoStilton;
@@ -142,6 +149,21 @@ const root = {
     }
 
     user.booksLiked = updatedBooksLikedByUser;
+
+    return user;
+  },
+  wantToReadBook: ({ userId, bookId }) => {
+    if (!fakeBookDatabase[bookId]) {
+      throw new Error('no book exists with id ' + bookId);
+    }
+
+    if (!fakeUserDatabase[userId]) {
+      throw new Error('no user exists with id ' + userId);
+    }
+
+    const user = fakeUserDatabase[userId];
+
+    user.booksWantToRead.push(fakeBookDatabase[bookId]);
 
     return user;
   }

@@ -28,6 +28,7 @@ const schema = buildSchema(`
     id: ID!
     name: String!
     booksRead: [Book!]!
+    booksLiked: [Book!]!
   }
 
   type Query {
@@ -36,9 +37,9 @@ const schema = buildSchema(`
 
   type Mutation {
     likeBook(
+      userId: ID!
       bookId: ID!
-      isLiked: Boolean!
-    ): Boolean!
+    ): User!
   }
 `);
 
@@ -69,15 +70,17 @@ class Review {
 }
 
 class User {
-  constructor(id, { name, booksRead }) {
+  constructor(id, { name, booksRead, booksLiked }) {
     this.id = id;
     this.name = name;
     this.booksRead = booksRead;
+    this.booksLiked = booksLiked;
   }
 }
 
 // create fake DB to populate data in
 const fakeBookDatabase = {};
+const fakeUserDatabase = {};
 
 // populate fake DB
 const gary = new Author(1, { name: "gary paulsen" });
@@ -89,14 +92,59 @@ const hatchet = new Book(1, { title: "hatchet", rating: 5, numberOfReviews: 1, a
 const geronimoStilton = new Book(2, { title: "geronimo stilton goes to church", rating: 3, numberOfReviews: 0, author: imaginary, reviews: [reviewAvg] });
 
 shreyas.booksRead = [hatchet, geronimoStilton];
+shreyas.booksLiked = [hatchet];
 
 fakeBookDatabase[1] = hatchet;
 fakeBookDatabase[2] = geronimoStilton;
 
+fakeUserDatabase[1] = shreyas;
+
 const root = {
   book: ({id}) => {
+    if (!fakeBookDatabase[id]) {
+      throw new Error('no book exists with id ' + id);
+    }
+
     return new Book(id, fakeBookDatabase[id]);
   },
+  likeBook: ({ userId, bookId }) => {
+    if (!fakeBookDatabase[bookId]) {
+      throw new Error('no book exists with id ' + bookId);
+    }
+
+    if (!fakeUserDatabase[userId]) {
+      throw new Error('no user exists with id ' + userId);
+    }
+
+    const user = fakeUserDatabase[userId];
+    let booksLikedByUser = user.booksLiked;
+    let updatedBooksLikedByUser = [];
+    let isBookAlreadyLiked = false;
+
+    booksLikedByUser.forEach(book => {
+      if (book.id == bookId) {
+        isBookAlreadyLiked = true;
+
+        let index = updatedBooksLikedByUser.indexOf(book);
+
+        if (index > -1) {
+          updatedBooksLikedByUser.splice(index, 1);
+        }
+
+        return;
+      } else {
+        updatedBooksLikedByUser.push(book);
+      }
+    });
+
+    if (!isBookAlreadyLiked) {
+      updatedBooksLikedByUser.push(fakeBookDatabase[bookId]);
+    }
+
+    user.booksLiked = updatedBooksLikedByUser;
+
+    return user;
+  }
 };
 
 const app = express();

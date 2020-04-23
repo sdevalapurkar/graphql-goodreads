@@ -1,9 +1,9 @@
-var express = require('express');
-var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
+const express = require('express');
+const graphqlHTTP = require('express-graphql');
+const { buildSchema } = require('graphql');
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
+const schema = buildSchema(`
   type Book {
     id: ID!
     title: String!
@@ -80,22 +80,25 @@ class User {
 const fakeBookDatabase = {};
 
 // populate fake DB
-var gary = new Author(1, { name: "gary paulsen" });
-var hatchet = new Book(1, { title: "hatchet", rating: 5, numberOfReviews: 1, author: gary, reviews: [review] });
-var geronimoStilton = new Book(2, { title: "geronimo stilton goes to church", rating: 3, numberOfReviews: 0, author: "imaginary author", reviews: [] });
-var shreyas = new User(1, { name: "shreyas", booksRead: [hatchet, geronimoStilton] });
-var review = new Review(1, { postedBy: shreyas, text: "This book was amazing, everyone should read it on goodreads" });
+const gary = new Author(1, { name: "gary paulsen" });
+const shreyas = new User(1, { name: "shreyas" });
+const reviewGood = new Review(1, { postedBy: shreyas, text: "This book was amazing, everyone should read it on goodreads" });
+const reviewAvg = new Review(2, { postedBy: shreyas, text: "It was alright, not the greatest." });
+const hatchet = new Book(1, { title: "hatchet", rating: 5, numberOfReviews: 1, author: gary, reviews: [reviewGood] });
+const geronimoStilton = new Book(2, { title: "geronimo stilton goes to church", rating: 3, numberOfReviews: 0, author: "imaginary author", reviews: [reviewAvg] });
+
+shreyas.booksRead = [hatchet, geronimoStilton];
 
 fakeBookDatabase[1] = hatchet;
 fakeBookDatabase[2] = geronimoStilton;
 
-var root = {
+const root = {
   book: ({id}) => {
     return new Book(id, fakeBookDatabase[id]);
   },
 };
 
-var app = express();
+const app = express();
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,

@@ -81,11 +81,12 @@ const fakeBookDatabase = {};
 
 // populate fake DB
 const gary = new Author(1, { name: "gary paulsen" });
+const imaginary = new Author(2, { name: "imaginary man" });
 const shreyas = new User(1, { name: "shreyas" });
 const reviewGood = new Review(1, { postedBy: shreyas, text: "This book was amazing, everyone should read it on goodreads" });
 const reviewAvg = new Review(2, { postedBy: shreyas, text: "It was alright, not the greatest." });
 const hatchet = new Book(1, { title: "hatchet", rating: 5, numberOfReviews: 1, author: gary, reviews: [reviewGood] });
-const geronimoStilton = new Book(2, { title: "geronimo stilton goes to church", rating: 3, numberOfReviews: 0, author: "imaginary author", reviews: [reviewAvg] });
+const geronimoStilton = new Book(2, { title: "geronimo stilton goes to church", rating: 3, numberOfReviews: 0, author: imaginary, reviews: [reviewAvg] });
 
 shreyas.booksRead = [hatchet, geronimoStilton];
 
@@ -105,5 +106,5 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 app.listen(4000, () => {
-  console.log('Running a GraphQL API server at localhost:4000/graphql');
+  console.log("Running shreyas' GraphQL API server at localhost:4000/graphql");
 });

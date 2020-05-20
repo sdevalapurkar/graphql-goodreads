@@ -2,9 +2,12 @@
   "name": "graphql-goodreads",
   "version": "1.0.0",
   "description": "GraphQL service providing data about your favourite books",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run rest\" \"npm run apollo\"",
+    "apollo": "node apollo",
+    "graphql": "node server",
+    "rest": "json-server --watch data.json --port 3005"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,14 @@
   },
   "homepage": "https://github.com/sdevalapurkar/graphql-goodreads#readme",
   "dependencies": {
+    "apollo-server": "2.13.1",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "2.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "5.2.0",
+    "json-server": "0.16.1"
   }
 }

@@ -1,0 +1,73 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "User Joyeux",
+            "booksLiked": [
+                "http://someendpointtogetbooks1"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Frank Huu",
+            "booksLiked": [
+                "http://someendpointtogetbooks2"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Derek Yusef",
+            "booksLiked": [
+                "http://someendpointtogetbooks3"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Muuuy Jinh",
+            "booksLiked": [
+                "http://someendpointtogetbooks4"
+            ]
+        }
+    ],
+    "authors": [
+        {
+            "id": 1,
+            "name": "John Dolla"
+        },
+        {
+            "id": 2,
+            "name": "Ed Cashman"
+        },
+        {
+            "id": 3,
+            "name": "Money Smith"
+        },
+        {
+            "id": 4,
+            "name": "Mula Man"
+        }
+    ],
+    "books": [
+        {
+            "id": 1,
+            "title": "The wonderful story of apollo",
+            "rating": 4.5,
+            "numberOfReviews": 50,
+            "author": "http://localhost:3005/authors/3"
+        },
+        {
+            "id": 2,
+            "title": "The story of the graphql dev who was awesome",
+            "rating": 2.5,
+            "numberOfReviews": 100,
+            "author": "http://localhost:3005/authors/1"
+        },
+        {
+            "id": 3,
+            "title": "The story of the QA who became a dev",
+            "rating": 5.0,
+            "numberOfReviews": 10,
+            "author": "http://localhost:3005/authors/2"
+        }
+    ]
+}

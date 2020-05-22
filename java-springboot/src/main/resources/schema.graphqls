@@ -1,0 +1,31 @@
+type Query {
+    "Books in our system"
+    books: [Book]
+    "A book in our system"
+    book(id: ID): Book
+    "Users of our system"
+    users: [User]
+    "A specific user in our system"
+    user(id: ID): User
+    "A specific author"
+    author(id: ID): Author
+}
+
+type Book {
+    id: ID!,
+    title: String!
+    rating: Float!
+    numberOfReviews: Int!
+    author: Author!
+}
+
+type Author {
+    id: ID!
+    name: String!
+}
+
+type User {
+    id: ID!
+    name: String!
+    booksLiked: [Book]
+}

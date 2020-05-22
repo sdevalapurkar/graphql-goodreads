@@ -2,13 +2,13 @@ type Query {
     "Books in our system"
     books: [Book]
     "A book in our system"
-    book(bookId: ID): Book
+    book(id: ID): Book
     "Users of our system"
     users: [User]
     "A specific user in our system"
-    user(userId: ID): User
+    user(id: ID): User
     "A specific author"
-    author(authorId: ID): Author
+    author(id: ID): Author
 }
 
 type Book {

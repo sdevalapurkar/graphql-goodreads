@@ -1,8 +1,0 @@
-GraphQL L&L:
-
-- add code comments
-- infinite loop concept
-- focus more on graphql not rest vs. graphql
-- who is using it
-- language support
-- tooling

@@ -34,6 +34,7 @@ const schema = buildSchema(`
 
   type Query {
     book(id: ID!): Book
+    user(id: ID!): User
   }
 
   type Mutation {
@@ -113,6 +114,13 @@ const root = {
     }
 
     return new Book(id, fakeBookDatabase[id]);
+  },
+  user: ({id}) => {
+    if (!fakeUserDatabase[id]) {
+      throw new Error('no user exists with id ' + id);
+    }
+
+    return new User(id, fakeUserDatabase[id]);
   },
   likeBook: ({ userId, bookId }) => {
     if (!fakeBookDatabase[bookId]) {

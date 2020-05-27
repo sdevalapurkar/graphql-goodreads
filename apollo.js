@@ -6,6 +6,8 @@ const resolvers = require("./resolvers");
 const server = new ApolloServer({
     typeDefs: types,
     resolvers,
+    introspection: true,
+    playground: true,
     context: {
         restUrl: "http://localhost:3005"
     }

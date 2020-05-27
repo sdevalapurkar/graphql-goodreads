@@ -50,3 +50,19 @@ To run the Java Springboot server:
 cd java-springboot
 gradle bootRun
 ```
+
+## Additional Resources
+Here is a small list of some other useful tools and resources for learning that I believe could be beneficial.
+
+#### GraphQL Playground Chrome Extension
+https://chrome.google.com/webstore/detail/graphql-playground-for-ch/kjhjcgclphafojaeeickcokfbhlegecd?hl=en
+
+#### GraphQL Java and Springboot
+https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/
+
+#### Learn Basic GraphQL and Apollo
+https://graphql.org/learn/queries/
+https://www.apollographql.com/docs/tutorial/introduction/
+
+#### Apollo Engine
+https://engine.apollographql.com/login

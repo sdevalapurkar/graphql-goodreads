@@ -1,7 +1,7 @@
 # graphql-goodreads
 Demo GraphQL service for serving up data about your favourite books. Includes basic types, queries, a resolver, and a mutation to get book data and like a book for a given user. Built for a lunch and learn presentation at NTT Data Services. Additional projects include:
 
-- An Apollo GraphQL service which consumes an API to show how GraphQL and RESTful services can live in harmony.
+- An Apollo GraphQL service which consumes an API to show how GraphQL and RESTful services can live in harmony. The Apollo server is available at https://sd-graphql-goodreads.herokuapp.com/.
 - A Java Springboot implementation of the GraphQL goodreads service.
 
 ### Queries

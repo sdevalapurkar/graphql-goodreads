@@ -1,34 +1,4 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "User Joyeux",
-            "booksLiked": [
-                "http://someendpointtogetbooks1"
-            ]
-        },
-        {
-            "id": 2,
-            "name": "Frank Huu",
-            "booksLiked": [
-                "http://someendpointtogetbooks2"
-            ]
-        },
-        {
-            "id": 3,
-            "name": "Derek Yusef",
-            "booksLiked": [
-                "http://someendpointtogetbooks3"
-            ]
-        },
-        {
-            "id": 4,
-            "name": "Muuuy Jinh",
-            "booksLiked": [
-                "http://someendpointtogetbooks4"
-            ]
-        }
-    ],
     "authors": [
         {
             "id": 1,
@@ -68,6 +38,36 @@
             "rating": 5.0,
             "numberOfReviews": 10,
             "author": "http://localhost:3005/authors/2"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "User Joyeux",
+            "booksLiked": [
+                "http://someendpointtogetbooks1"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Frank Huu",
+            "booksLiked": [
+                "http://someendpointtogetbooks2"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Derek Yusef",
+            "booksLiked": [
+                "http://someendpointtogetbooks3"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Muuuy Jinh",
+            "booksLiked": [
+                "http://someendpointtogetbooks4"
+            ]
         }
     ]
 }
